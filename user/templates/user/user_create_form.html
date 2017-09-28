@@ -1,0 +1,59 @@
+{% extends 'base2.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% block content %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="{% static 'css/form-register.css' %}">
+
+</head>
+
+<body>
+
+    <div class="main-content">
+
+
+        <form class="form-register" method="post" action="">
+            {% csrf_token %}
+
+            <div class="form-register-with-email">
+
+                <div class="form-white-background">
+
+                    <div class="form-title-row">
+                        <h1>Create an account</h1>
+                    </div>
+
+                    <div class="form-row">
+                        {{ form.as_p }}
+                        <input type="submit" value="Create">
+                    </div>
+                </div>
+
+                <a href="#" class="form-log-in-with-existing">Already have an account? Login here &rarr;</a>
+
+            </div>
+
+            <div class="form-sign-in-with-social">
+
+                <div class="form-row form-title-row">
+                    <span class="form-title">Sign in with</span>
+                </div>
+
+                <a href="#" class="form-google-button">Google</a>
+                <a href="#" class="form-facebook-button">Facebook</a>
+                <a href="#" class="form-twitter-button">Twitter</a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    </body>
+    {% endblock %}
+</html>

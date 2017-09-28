@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% block content %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Registration Form</title>
+        <link rel="stylesheet" href="{% static 'css/form-basic.css' %}">
+
+        </head>
+
+        <body>
+
+        <div class="main-content">
+            <div class="form-title-row">
+                <h1>Edit account</h1>
+            </div>
+
+            <form class="form-basic" method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                <div class="form-row">
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    <p><input type="submit" value="Save"></p>
+                </div>
+
+            </form>
+
+        </div>
+
+        </body>
+    {% endblock %}
+</html>
