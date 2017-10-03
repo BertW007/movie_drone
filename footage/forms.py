@@ -1,6 +1,6 @@
 from django import forms
 
-from footage.models import Footage, UserDetails
+from footage.models import Footage, FootageDetail
 
 
 class FootageForm(forms.ModelForm):
@@ -34,10 +34,10 @@ CITIES = [
 ]
 
 
-class UserDetailsForm(forms.ModelForm):
+class FootageDetailCreateForm(forms.ModelForm):
     class Meta:
-        model = UserDetails
-        fields = ["about_me", "pricing", "video_type", "cities"]
+        model = FootageDetail
+        fields = ["about_me", "pricing", "video_type", "city"]
 
-class EditDetailsForm(UserDetailsForm):
+class FootageDetailEditForm(FootageDetailCreateForm):
     pass

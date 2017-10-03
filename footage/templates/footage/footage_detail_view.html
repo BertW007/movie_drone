@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+    <div class="details">
+{#        <br><br>#}
+{#        <h1>{{ user.username }}'s nest</h1>#}
+{#        <a href="{%  url 'message' pk=user.id %}" class="btn btn-primary">send a message</a>#}
+{#        <a href="{%  url 'recommend' pk=user.id %}" class="btn btn-success">recommend this user</a>#}
+{#        <br><br><br>#}
+        {% if detail %}
+
+            <h3>about me:</h3>
+            <blockquote class="blockquote" ><p class="mb-0" > <i>{{ detail.about_me }}</i></p></blockquote>
+            <h3>pricing:</h3> <blockquote class="blockquote" ><p class="mb-0" >  {{ detail.pricing }} zł per flight</p></blockquote>
+            <h3>My offer:</h3> <blockquote class="blockquote" ><p class="mb-0" > {{ detail.video_type }} production</p></blockquote>
+        {% endif %}
+        {% if city %}
+            <h3>My cities:</h3>
+            <blockquote class="blockquote" ><ul class="list-inline">
+            {% for object in city %}
+                <li class="list-inline-item">{{object.name}}</li>
+            {% endfor %}
+
+        {% endif %}
+        </ul>
+        </blockquote>
+
+        <h3>My footage:</h3>
+
+        {% for footage in footage_list %}
+
+
+            <iframe width="560" height="315" src="{{ footage.link }}" frameborder="0" allowfullscreen></iframe>
+            <br>
+            description: {{ footage.description }}<br>
+
+
+        {% endfor %}
+        <br>
+    </div>
+    <blockquote class="blockquote ">
+        {% for post in recommendations %}
+            <p class="mb-0">{{ post.content }} </p> <footer class="blockquote-footer">{{post.sender}}</footer>
+        {% endfor %}
+    </blockquote>
+
+
+{% endblock %}

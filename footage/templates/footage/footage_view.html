@@ -1,0 +1,47 @@
+{% extends 'base2.html' %}
+
+
+{% block content %}
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">It's good to have you here!</h1>
+        <p class="lead text-muted"> A good snapshot stops a moment from running away.  So... get on your way! </p>
+        {% if not current_user %}
+          <p>
+          <a href="{% url 'user-create' %}" class="btn btn-primary">Sign up</a>
+          <a href="{% url 'user-login' %}" class="btn btn-secondary">Login</a>
+        </p>
+          {% endif %}
+      </div>
+    </section>
+<div style="padding-left: 80px">
+<h2>
+  <small class="text-muted">Latest </small> masterpieces:
+</h2>
+<br>
+</div>
+<div class="album text-muted">
+      <div class="container">
+
+        <div class="row">
+
+              {% for object in footage %}
+          <div class="card">
+
+              <iframe src="{{ object.link }}" width="356" height="280" alt="Video footage"></iframe>
+            <p class="card-text">Added by <a href = "{%  url 'footage-detail' pk=object.author_id %}" > {{object.author}}</a></p>
+              <p><blockquote class="blockquote text-right">{{object.description}}</blockquote></p>
+          </div>
+ {% endfor %}
+
+      </div>
+    </div>
+
+    {% endblock %}

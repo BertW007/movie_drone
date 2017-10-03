@@ -27,6 +27,9 @@ class UserCreateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
+        help_texts = {
+            'username': None
+        }
 
     def clean_login(self):
         login = self.cleaned_data['username']
