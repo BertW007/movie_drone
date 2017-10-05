@@ -1,7 +1,9 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from django.views.generic import FormView
 
@@ -20,8 +22,14 @@ class UserCreateView(View):
     def post(self, request):
         form = UserCreateForm(data=request.POST)
         if form.is_valid():
+            # permission_one = Permission.objects.get(name='Can add footage')
+            # permission_two = Permission.objects.get(name='Can change footage')
+            # permission_three = Permission.objects.get(name='Can delete footage')
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data['password'])
+            # new_user.user_permissions.add(permission_one,
+            #                               permission_two,
+            #                               permission_three)
             new_user.save()
             profile = Profile.objects.create(user=new_user)
             return render(request, 'user/user_create_done.html', {
@@ -48,10 +56,7 @@ class UserEditView(LoginRequiredMixin, View):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return render(request, 'user/user_edit_form.html', {
-            'user_form': user_form,
-            'profile_form': profile_form,
-        })
+        return HttpResponseRedirect(reverse('footage-view'))
 
 
 class UserLoginView(FormView):

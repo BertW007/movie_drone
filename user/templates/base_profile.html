@@ -41,15 +41,15 @@
             <a href="{% url 'search' %}">Search</a>
 
         </nav>
-            {% if request.user.is_authenticated %}
-        <div class="header-user-menu">
-            {#			<img src="img/2.jpg" alt="User Image"/>#}
+        {% if request.user.is_authenticated %}
+            <div class="header-user-menu">
+            <img src="{{ user.profile.photo.url }}" alt="User Image"/>
             <ul>
                 <li><a href="{% url 'user-console' pk=request.user.id %}">My Profile</a></li>
                 <li><a href="{% url 'user-edit' %}">Settings</a></li>
                 <li><a href="{% url 'user-logout' %}" class="highlight">Logout</a></li>
             </ul>
-            {% endif %}
+        {% endif %}
         </div>
 
     </div>

@@ -37,7 +37,7 @@ CITY = [
 class Footage(models.Model):
     link = models.URLField()
     author = models.ForeignKey(User)
-    description = models.TextField
+    description = models.TextField()
 
     def __str__(self):
         return self.description
@@ -58,7 +58,7 @@ class FootageDetail(models.Model):
     city = models.CharField(choices=CITY, max_length=64)
 
     def __str__(self):
-        return self.about_me
+        return 'User {}, about me: {}'.format(self.person.get_username(), self.about_me)
 
     # def get_absolute_url(self):
     #     return reverse('console', kwargs={'pk': self.person.pk})

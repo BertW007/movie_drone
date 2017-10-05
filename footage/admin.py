@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+from footage.models import FootageDetail, Footage
+
+
+@admin.register(Footage)
+class FootageAdmin(admin.ModelAdmin):
+    list_display = ['link', 'author', 'description']
+
+@admin.register(FootageDetail)
+class FootageDetailAdmin(admin.ModelAdmin):
+    list_display = ['person', 'about_me', 'pricing', 'video_type', 'city']
+    list_filter = ['pricing', 'city']
+    search_fields = ['pricing', 'city']
