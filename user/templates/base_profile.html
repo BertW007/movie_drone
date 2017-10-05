@@ -34,24 +34,22 @@
 <header class="header-user-dropdown">
 
     <div class="header-limiter">
-        <h1><a href="#">Movie<span>DRONE</span></a></h1>
+        <h1><a href="/">Movie<span>DRONE</span></a></h1>
 
         <nav>
-            <a href="/">Main</a>
             <a href="{% url 'footage-view' %}">Videos</a>
             <a href="{% url 'search' %}">Search</a>
 
         </nav>
-
-
+            {% if request.user.is_authenticated %}
         <div class="header-user-menu">
             {#			<img src="img/2.jpg" alt="User Image"/>#}
-
             <ul>
                 <li><a href="{% url 'user-console' pk=request.user.id %}">My Profile</a></li>
                 <li><a href="{% url 'user-edit' %}">Settings</a></li>
                 <li><a href="{% url 'user-logout' %}" class="highlight">Logout</a></li>
             </ul>
+            {% endif %}
         </div>
 
     </div>

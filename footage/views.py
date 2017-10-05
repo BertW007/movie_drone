@@ -33,6 +33,7 @@ class FootageCreateView(LoginRequiredMixin, CreateView):
 class FootageUpdateView(LoginRequiredMixin, UpdateView):
     model = Footage
     form_class = FootageForm
+    template_name = 'footage/footage_create_form.html'
 
 
 class FootageDeleteView(LoginRequiredMixin, DeleteView):
@@ -57,7 +58,7 @@ class FootageView(TemplateResponseMixin, View):
         return render(request, 'footage/footage_view.html', ctx)
 
 
-class FootageDetailView(View):
+class FootageDetailView(LoginRequiredMixin, View):
     def get(self, request, pk):
         current_user = User.objects.get(pk=pk)
         if FootageDetail.objects.all().filter(person_id=pk).exists():
@@ -74,7 +75,7 @@ class FootageDetailView(View):
                 'footage_list': Footage.objects.all().filter(author= pk)})
 
 
-class FootageDetailCreateView(CreateView):
+class FootageDetailCreateView(LoginRequiredMixin, CreateView):
     model = FootageDetail
     form_class = FootageDetailCreateForm
     template_name = 'footage/footage_detail_create_form.html'
@@ -86,7 +87,7 @@ class FootageDetailCreateView(CreateView):
         return HttpResponseRedirect(reverse('footage-view'))
 
 
-class FootageDetailEditView(UpdateView):
+class FootageDetailEditView(LoginRequiredMixin, UpdateView):
     model = FootageDetail
     form_class = FootageDetailEditForm
     template_name = 'footage/footage_detail_create_form.html'

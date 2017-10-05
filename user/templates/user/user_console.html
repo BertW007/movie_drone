@@ -32,7 +32,7 @@
     <table>
     {% for footage in footage_list %}
         <tr><td>{{footage.description}} </td>
-            <td><a href = "{{footage.link }}" class=" btn " >Watch</button></a></td>
+            <td><a href = "{{footage.link }}" class=" btn " >Watch </a></td>
             <td><a href = "{%  url 'footage-update' pk=footage.id %}" button type="button" class=" btn " >Edit</button></a></td>
             <td><a href = "{%  url 'footage-delete' pk=footage.id %}" class="btn btn-danger" >Delete</a></td>
         </tr>

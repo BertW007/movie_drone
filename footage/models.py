@@ -40,7 +40,7 @@ class Footage(models.Model):
     description = models.TextField
 
     def __str__(self):
-        return self.link
+        return self.description
 
     def get_delete_url(self):
         return reverse('delete-footage', kwargs={'pk': self.pk})

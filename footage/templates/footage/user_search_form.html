@@ -4,42 +4,42 @@
 
     <form action="" method="POST"> {% csrf_token %}
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">It's good to have you here!</h1>
-        <p class="lead text-muted"> A good snapshot stops a moment from running away.  So... get on your way! </p>
-        <p>
-             {{ form }}
-                  <input type="submit" class="btn btn-primary" value="Search"/>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">It's good to have you here!</h1>
+                <p class="lead text-muted"> A good snapshot stops a moment from running away.  So... get on your way! </p>
+                <p>
+                    {{ form }}
+                    <input type="submit" class="btn btn-primary" value="Search"/>
 
-        </p>
-      </div>
-    </section>
+                </p>
+            </div>
+        </section>
 
 
 
     </form>
 
-<ol>
+    <ol>
 
 
-    {% for detail in details %}
-    <blockquote class="blockquote" ><p class="mb-0" >
-        <p align="center"> <a href = "{%  url 'footage-detail' pk=detail.person.id %}" class="btn btn-primary" > {{detail.person.username}}</a></p><br>
+        {% for detail in details %}
+            <blockquote class="blockquote" ><p class="mb-0" >
+                <p align="center"> <a href = "{%  url 'footage-detail' pk=detail.person.id %}" class="btn btn-primary" > {{detail.person.username}}</a></p><br>
 
-            {% for footage in detail.person.userfootage_set.all  %}
-        <p align="center"> <iframe src="{{ footage.link }}" width="600" height="400" align="center"></iframe></p> <br>
- <br>
-            {%endfor %}</blockquote>
-    <br>
-    {% endfor %}
+                {% for footage in detail.person.userfootage_set.all  %}
+                    <p align="center"> <iframe src="{{ footage.link }}" width="600" height="400" align="center"></iframe></p> <br>
+                    <br>
+                {%endfor %}</blockquote>
+            <br>
+        {% endfor %}
 
-{% for user in results %}
+        {% for user in results %}
 
-    <a href = "{%  url 'footage-detail' pk=user.id %}" > {{user.username}}</a><br><br>
+            <a href = "{%  url 'footage-detail' pk=user.id %}" > {{user.username}}</a><br><br>
 
-{% endfor %}
-</ol>
+        {% endfor %}
+    </ol>
 
 
 

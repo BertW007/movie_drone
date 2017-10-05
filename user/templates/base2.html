@@ -4,13 +4,14 @@
 
 <head>
 
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Main Page</title>
+    <title>Main Page</title>
 
-	<link rel="stylesheet" href="{% static 'css/header-login-signup.css' %}">
-	<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/header-login-signup.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
 
 </head>
 
@@ -18,34 +19,32 @@
 
 <header class="header-login-signup">
 
-	<div class="header-limiter">
+    <div class="header-limiter">
 
-		<h1><a href="#">Movie<span>drone</span></a></h1>
+        <h1>Movie<span>drone</span></h1>
 
-		<nav>
-			<a href="#">Main</a>
-			<a href="#" class="selected">My Panel</a>
-		</nav>
+        <nav>
+            <a href="/">Main</a>
+        </nav>
 
-		<ul>
+        <ul>
             {% if request.user.is_authenticated %}
-			<li><a href="{% url 'user-logout' %}">Logout</a></li>
+                <li><a href="{% url 'user-console' request.user.id %}">My panel</a></li>
+                <li><a href="{% url 'user-logout' %}">Logout</a></li>
             {% else %}
-            <li><a href="{% url 'user-login' %}">Login</a></li>
+                <li><a href="{% url 'user-login' %}">Login</a></li>
+                <li><a href="{% url 'user-create' %}">Sign up</a></li>
             {% endif %}
-			<li><a href="{% url 'user-create' %}">Sign up</a></li>
-		</ul>
+        </ul>
 
-	</div>
+    </div>
 
 </header>
 
-<!-- The content of your page would go here. -->
 
 
 <div class="menu">
-
-	{% block content %}
+    {% block content %}
 
     {% endblock %}
 
@@ -54,3 +53,4 @@
 </body>
 
 </html>
+

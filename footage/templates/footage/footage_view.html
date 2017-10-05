@@ -1,99 +1,58 @@
-{% extends 'base_profile.html' %}
-
-
+{% extends 'base2.html' %}
+{% load static %}
+<!DOCTYPE html>
 {% block content %}
+    <html>
+    <head>
 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <title>Movie Drone</title>
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+        <link rel="stylesheet" href="{% static 'css/thumbnail-gallery.css' %}">
 
-{#    <section class="jumbotron text-center">#}
-{#      <div class="container">#}
-{#        <h1 class="jumbotron-heading">It's good to have you here!</h1>#}
-{#        <p class="lead text-muted"> A good snapshot stops a moment from running away.  So... get on your way! </p>#}
-{#        {% if not current_user %}#}
-{#          <p>#}
-{#          <a href="{% url 'user-create' %}" class="btn btn-primary">Sign up</a>#}
-{#          <a href="{% url 'user-login' %}" class="btn btn-secondary">Login</a>#}
-{#        </p>#}
-{#          {% endif %}#}
-{#      </div>#}
-{#    </section>#}
-<div style="padding-left: 80px">
-<h2>
-  <small class="text-muted">Latest </small> masterpieces:
-</h2>
-<br>
-</div>
-<div class="album text-muted">
-      <div class="container">
+    </head>
+    <body>
 
-        <div class="row">
+    <div class="container gallery-container">
 
-              {% for footage in object_list %}
-          <div class="card">
+        <h1>Movie Drone</h1>
 
-              <iframe src="{{ footage.link }}" width="356" height="280" alt="Video footage"></iframe>
-            <p class="card-text">Added by <a href = "{%  url 'footage-detail' pk=footage.author_id %}" > {{footage.author}}</a></p>
-              <p><blockquote class="blockquote text-right">{{footage.description}}</blockquote></p>
-          </div>
- {% endfor %}
+        <p class="page-description t    ext-center">Thumbnails With Title And Description</p>
 
-      </div>
+        <div class="tz-gallery">
+
+            <div class="row">
+                {% for footage in object_list %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a class="lightbox" href="{{ footage.link }}">
+                                <iframe src="{{ footage.link }}" alt="Video footage"></iframe>
+                            </a>
+                            <div class="caption">
+                                <h3>Added by <a href = "{%  url 'footage-detail' pk=footage.author_id %}">
+                                    {{footage.author}}</a>
+                                </h3>
+                                <p>{{footage.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
     </div>
 
-    {% endblock %}
-{#{% extends 'base_profile.html' %}#}
-{#{% load static %}#}
-{#{% block  content %}#}
-{#<html>#}
-{#<head>#}
-{##}
-{#    <meta charset="utf-8">#}
-{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{##}
-{#    <title>Movie Drone</title>#}
-{##}
-{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
-{#    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">#}
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">#}
-{#    <link rel="stylesheet" href="{% static 'css/gallery-grid.css' %}">#}
-{##}
-{##}
-{#</head>#}
-{#<body>#}
-{#<div class="container gallery-container">#}
-{##}
-{#    <h1>Movie Drone</h1>#}
-{##}
-{##}
-{#    <div class="tz-gallery">#}
-{##}
-{#        <div class="row">#}
-{#                {% for footage in object_list %}#}
-{##}
-{#            <div class="col-sm-6 col-md-4">#}
-{#                <iframe src="{{ footage.link }}" width="356" height="280" alt="Video footage"></iframe>#}
-{#            <p class="card-text">Added by <a href = "{%  url 'footage-detail' pk=footage.author_id %}" > {{footage.author}}</a></p>#}
-{#                <a class="lightbox" href="{{ footage.link }}">#}
-{#                    <iframe src="{{ footage.link }}" alt="Video footage"></iframe>#}
-{#                </a>#}
-{#            <p class="card-text">Added by <a href = "{%  url 'footage-detail' pk=footage.author_id %}" > {{footage.author}}</a>#}
-{#            </div>#}
-{##}
-{#                {% endfor %}#}
-{##}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>#}
-{#<script>#}
-{#    baguetteBox.run('.tz-gallery');#}
-{#</script>#}
-{#</body>#}
-{#</html>#}
-{#{% endblock %}#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+    </body>
+    </html>
+{% endblock %}
