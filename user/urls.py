@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^logout/', views.UserLogoutView.as_view(), name='user-logout'),
     url(r'^register/$', views.UserCreateView.as_view(), name='user-create'),
     url(r'^register/done/$', views.UserCreateView.as_view(), name='user-create-done'),
-    # url(r'^account/my-profile/$', views.dashboard, name='user-profile'),
-    url(r'^my-profile/edit/$', views.UserEditView.as_view(), name='user-edit'),
+    url(r'^profile/edit/$', views.UserEditView.as_view(), name='user-edit'),
+    url(r'^(?P<pk>(\d)+)/profile/console/$', views.ConsoleView.as_view(), name='user-console'),
 ]

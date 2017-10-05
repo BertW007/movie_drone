@@ -11,6 +11,28 @@ VIDEO_TYPES = [
     ('video and photography', "video and photography"),
 ]
 
+CITY = [
+
+    ("Białystok"  ,"Białystok"  ),
+    ("Bydgoszcz"  ,"Bydgoszcz"  ),
+    ("Częstochowa","Częstochowa"),
+    ("Gdynia"     ,"Gdynia"     ),
+    ("Gdańsk"     ,"Gdańsk"     ),
+    ("Łódź"       ,"Łódź"       ),
+    ("Katowice"   ,"Katowice"   ),
+    ("Kraków"     ,"Kraków"     ),
+    ("Lublin"     ,"Lublin"     ),
+    ("Opole"      ,"Opole"      ),
+    ("Poznań"     ,"Poznań"     ),
+    ("Radom"      ,"Radom"      ),
+    ("Sosnowiec"  ,"Sosnowiec"  ),
+    ("Szczecin"   ,"Szczecin"   ),
+    ("Toruń"      ,"Toruń"      ),
+    ("Warszawa"   ,"Warszawa"   ),
+    ("Wrocław"    ,"Wrocław"    ),
+
+]
+
 
 class Footage(models.Model):
     link = models.URLField()
@@ -23,12 +45,9 @@ class Footage(models.Model):
     def get_delete_url(self):
         return reverse('delete-footage', kwargs={'pk': self.pk})
 
+    def get_absolute_url(self):
+        return reverse('console', kwargs={'pk': self.author.pk})
 
-class City(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
 
 class FootageDetail(models.Model):
@@ -36,7 +55,7 @@ class FootageDetail(models.Model):
     about_me = models.TextField()
     pricing = models.DecimalField(max_digits=6, decimal_places=2)
     video_type = models.CharField(choices=VIDEO_TYPES, max_length=100)
-    city = models.ManyToManyField(City)
+    city = models.CharField(choices=CITY, max_length=64)
 
     def __str__(self):
         return self.about_me

@@ -4,14 +4,15 @@ from footage.models import Footage, FootageDetail
 
 
 class FootageForm(forms.ModelForm):
-    link = forms.URLField(help_text='Insert a youtube link here.')
-    description = forms.CharField(max_length=35, help_text="The max length of the description is 35 digits.")
+    link = forms.URLField(help_text='Youtube Link')
+    description = forms.CharField(max_length=35, help_text="The max length - 35 digits")
+
     class Meta:
         model = Footage
         fields = ["link", "description"]
 
 
-CITIES = [
+CITY = [
 
     ("Białystok"  ,"Białystok"  ),
     ("Bydgoszcz"  ,"Bydgoszcz"  ),
@@ -37,7 +38,12 @@ CITIES = [
 class FootageDetailCreateForm(forms.ModelForm):
     class Meta:
         model = FootageDetail
-        fields = ["about_me", "pricing", "video_type", "city"]
+        fields = ["about_me", "pricing", "video_type"]
 
+    city = forms.MultipleChoiceField(choices=CITY)
 class FootageDetailEditForm(FootageDetailCreateForm):
     pass
+
+class UserSearchForm(forms.Form):
+    city = forms.ChoiceField(choices=CITY)
+    maximum_price = forms.IntegerField(initial=1000)

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,158 +19,166 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'css/landing-page.css' %}" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div class="container">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
         <a class="navbar-brand" href="#">Movie Drone</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Videos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'user-login' %}">Login</a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 'user-create' %}">Register</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="intro-header">
-      <div class="container">
-        <div class="intro-message">
-          <h1>MOVIE DRONE</h1>
-          <h3>Enjoy Wonderful Memories</h3>
-          <hr class="intro-divider">
-{#          <ul class="list-inline intro-social-buttons">#}
-{#            <li class="list-inline-item">#}
-{#              <a href="#" class="btn btn-secondary btn-lg">#}
-{#                <i class="fa fa-twitter fa-fw"></i>#}
-{#                <span class="network-name">Twitter</span>#}
-{#              </a>#}
-{#            </li>#}
-{#            <li class="list-inline-item">#}
-{#              <a href="#" class="btn btn-secondary btn-lg">#}
-{#                <i class="fa fa-github fa-fw"></i>#}
-{#                <span class="network-name">Github</span>#}
-{#              </a>#}
-{#            </li>#}
-{#            <li class="list-inline-item">#}
-{#              <a href="#" class="btn btn-secondary btn-lg">#}
-{#                <i class="fa fa-linkedin fa-fw"></i>#}
-{#                <span class="network-name">Linkedin</span>#}
-{#              </a>#}
-{#            </li>#}
-{#          </ul>#}
-        </div>
-      </div>
-    </header>
-
-    <!-- Page Content -->
-    <section class="content-section-a">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-5 ml-auto">
-            <hr class="section-heading-spacer">
-            <div class="clearfix"></div>
-            <h2 class="section-heading">About Movie Drone:</h2>
-            <p class="lead">Have you ever wondered how to make a video of an event more engaging? Or how to represent
-                an object? The answer is very simple. For some time it has become increasingly popular to record from
-                a bird's eye view.
-                Record the most important moments with a professional drone.
-              </p>
-          </div>
-          <div class="col-lg-5 mr-auto">
-            <img class="img-fluid" src="{% static 'img/drone.jpg' %}" alt="">
-          </div>
-        </div>
-
-      </div>
-      <!-- /.container -->
-    </section>
-
-    <aside class="banner">
-
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-6 my-auto">
-            <h2>Created by:<br> Michał Stelwach</h2>
-          </div>
-          <div class="col-lg-6 my-auto">
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="#" class="btn btn-secondary btn-lg">
-                  <i class="fa fa-twitter fa-fw"></i>
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#" class="btn btn-secondary btn-lg">
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#" class="btn btn-secondary btn-lg">
-                  <i class="fa fa-linkedin fa-fw"></i>
-                  <span class="network-name">Linkedin</span>
-                </a>
-              </li>
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user-console' request.user.id %}">My Profile</a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'footage-view' %}">Videos</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user-login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user-create' %}">Register</a>
+                    </li>
+                {% endif %}
             </ul>
-          </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="intro-header">
+    <div class="container">
+        <div class="intro-message">
+            <h1>MOVIE DRONE</h1>
+            <h3>Enjoy Wonderful Memories</h3>
+            <hr class="intro-divider">
+            {#          <ul class="list-inline intro-social-buttons">#}
+            {#            <li class="list-inline-item">#}
+            {#              <a href="#" class="btn btn-secondary btn-lg">#}
+            {#                <i class="fa fa-twitter fa-fw"></i>#}
+            {#                <span class="network-name">Twitter</span>#}
+            {#              </a>#}
+            {#            </li>#}
+            {#            <li class="list-inline-item">#}
+            {#              <a href="#" class="btn btn-secondary btn-lg">#}
+            {#                <i class="fa fa-github fa-fw"></i>#}
+            {#                <span class="network-name">Github</span>#}
+            {#              </a>#}
+            {#            </li>#}
+            {#            <li class="list-inline-item">#}
+            {#              <a href="#" class="btn btn-secondary btn-lg">#}
+            {#                <i class="fa fa-linkedin fa-fw"></i>#}
+            {#                <span class="network-name">Linkedin</span>#}
+            {#              </a>#}
+            {#            </li>#}
+            {#          </ul>#}
+        </div>
+    </div>
+</header>
+
+<!-- Page Content -->
+<section class="content-section-a">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 ml-auto">
+                <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">About Movie Drone:</h2>
+                <p class="lead">Have you ever wondered how to make a video of an event more engaging? Or how to represent
+                    an object? The answer is very simple. For some time it has become increasingly popular to record from
+                    a bird's eye view.
+                    Record the most important moments with a professional drone.
+                </p>
+            </div>
+            <div class="col-lg-5 mr-auto">
+                <img class="img-fluid" src="{% static 'img/drone.jpg' %}" alt="">
+            </div>
         </div>
 
-      </div>
-      <!-- /.container -->
+    </div>
+    <!-- /.container -->
+</section>
 
-    </aside>
-    <!-- /.banner -->
+<aside class="banner">
 
-    <!-- Footer -->
-    <footer>
-      <div class="container">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6 my-auto">
+                <h2>Created by:<br> Michał Stelwach</h2>
+            </div>
+            <div class="col-lg-6 my-auto">
+                <ul class="list-inline banner-social-buttons">
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-secondary btn-lg">
+                            <i class="fa fa-twitter fa-fw"></i>
+                            <span class="network-name">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-secondary btn-lg">
+                            <i class="fa fa-github fa-fw"></i>
+                            <span class="network-name">Github</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#" class="btn btn-secondary btn-lg">
+                            <i class="fa fa-linkedin fa-fw"></i>
+                            <span class="network-name">Linkedin</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</aside>
+<!-- /.banner -->
+
+<!-- Footer -->
+<footer>
+    <div class="container">
         <ul class="list-inline">
-{#          <li class="list-inline-item">#}
-{#            <a href="#">Home</a>#}
-{#          </li>#}
-{#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-{#          <li class="list-inline-item">#}
-{#            <a href="#about">About</a>#}
-{#          </li>#}
-{#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-{#          <li class="list-inline-item">#}
-{#            <a href="#services">Services</a>#}
-{#          </li>#}
-{#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-{#          <li class="list-inline-item">#}
-{#            <a href="#contact">Contact</a>#}
-{#          </li>/#}
+            {#          <li class="list-inline-item">#}
+            {#            <a href="#">Home</a>#}
+            {#          </li>#}
+            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
+            {#          <li class="list-inline-item">#}
+            {#            <a href="#about">About</a>#}
+            {#          </li>#}
+            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
+            {#          <li class="list-inline-item">#}
+            {#            <a href="#services">Services</a>#}
+            {#          </li>#}
+            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
+            {#          <li class="list-inline-item">#}
+            {#            <a href="#contact">Contact</a>#}
+            {#          </li>/#}
         </ul>
         <p class="copyright text-muted small">Copyright &copy; mstelwach 2017. All Rights Reserved</p>
-      </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/popper/popper.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/popper/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 
-  </body>
+</body>
 
 </html>

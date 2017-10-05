@@ -1,0 +1,60 @@
+{% extends 'base_profile.html' %}
+
+
+{% block content %}
+ <div class="details">
+    <h1>{{ user.username }}'s console:</h1>
+
+    {% if details %}
+
+        <h3>about me:</h3>
+        <blockquote class="blockquote" ><p class="mb-0" > {{ details.about_me }}</p></blockquote>
+        <h3>pricing:</h3> <blockquote class="blockquote" ><p class="mb-0" >  {{ details.pricing }} zł per flight</p></blockquote>
+        <h3>video type:</h3> <blockquote class="blockquote" ><p class="mb-0" > {{ details.video_type }}</p></blockquote>
+
+    {% endif %}
+
+{#    {% if cities %}#}
+{#    <h3>My cities:</h3>#}
+{#    <blockquote class="blockquote" ><ul class="list-inline">#}
+{##}
+{#        {% for city in cities %}#}
+{#        <li class="list-inline-item">{{city.name}}</li>#}
+{#        {% endfor %}#}
+{##}
+{#    </ul></blockquote>#}
+{##}
+{#    {% endif %}#}
+            {% if footage_list %}
+    <h3>My footage:</h3>
+    <blockquote class="blockquote" >
+
+    <table>
+    {% for footage in footage_list %}
+        <tr><td>{{footage.description}} </td>
+            <td><a href = "{{footage.link }}" class=" btn " >Watch</button></a></td>
+            <td><a href = "{%  url 'footage-update' pk=footage.id %}" button type="button" class=" btn " >Edit</button></a></td>
+            <td><a href = "{%  url 'footage-delete' pk=footage.id %}" class="btn btn-danger" >Delete</a></td>
+        </tr>
+    {% endfor %}
+
+    {% endif %}
+    </table>
+</blockquote>
+
+    <br>
+{% if add_details %}
+<a href = "{%  url 'footage-detail-create' pk=user.id %}" class="btn btn-primary" > add details</a>
+
+{% endif %}
+
+{% if edit_details %}
+
+<a href = "{%  url 'footage-detail-edit' pk=user.id %}" class="btn btn-primary" > edit details</a>
+{% endif %}
+
+
+<a href = "{%  url 'footage-create' %}"class="btn btn-primary" > add footage</a>
+
+
+    {% endblock %}
