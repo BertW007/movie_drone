@@ -12,6 +12,8 @@ from django.views.generic.base import TemplateResponseMixin
 
 from footage.forms import FootageForm, FootageDetailCreateForm, FootageDetailEditForm, UserSearchForm
 from footage.models import Footage, FootageDetail
+from message.models import Message
+from user.models import Profile
 
 
 class FootageCreateView(PermissionRequiredMixin, CreateView):
@@ -93,10 +95,8 @@ class FootageDetailView(LoginRequiredMixin, View):
         current_user = User.objects.get(pk=pk)
         if FootageDetail.objects.all().filter(person_id=pk).exists():
             detail = FootageDetail.objects.get(person=current_user)
-            # city = FootageDetail.objects.get(person_id=pk).city.all()
             return render(request, 'footage/footage_detail_view.html', {
                 'user': current_user,
-                # 'city': city,
                 'detail': detail,
                 'footage_list': Footage.objects.all().filter(author= pk)})
         else:

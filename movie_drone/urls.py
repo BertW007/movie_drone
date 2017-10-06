@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='static_pages/main_page.html'),
         name='home'),
     url(r'^', include('footage.urls')),
+    url(r'^', include('message.urls')),
 ]
 
 

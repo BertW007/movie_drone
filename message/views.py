@@ -36,9 +36,14 @@ class MessageListView(LoginRequiredMixin, View):
             'messages_sent': messages_sent,
         })
 
-class MessageDeleteView(DeleteView):
+
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
     model = Message
     template_name = 'message/message_delete_form.html'
+    success_url = 'user-console'
+    raise_exception = True
 
     def get_success_url(self):
-        return reverse('message-view')
+        return reverse ('user-console', kwargs= {
+            'pk': int(self.request.user.id)
+        })

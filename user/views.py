@@ -16,7 +16,7 @@ class UserCreateView(View):
     def get(self, request):
         form = UserCreateForm()
         return render(request, 'user/user_create_form.html', {
-            'form': form
+            'form': form,
         })
 
     def post(self, request):
@@ -33,7 +33,7 @@ class UserCreateView(View):
             new_user.save()
             profile = Profile.objects.create(user=new_user)
             return render(request, 'user/user_create_done.html', {
-                'new_user': new_user
+                'new_user': new_user,
             })
 
 
@@ -82,13 +82,11 @@ class ConsoleView(LoginRequiredMixin, View):
         if FootageDetail.objects.all().filter(person_id=pk).exists():
             details = FootageDetail.objects.get(person=current_user)
             edit_details = 'edit details'
-            # cities = FootageDetail.objects.get(person_id=pk).city.all()
 
             return render(request, 'user/user_console.html', {
                 'user': current_user,
                 'details': details,
                 'edit_details': edit_details,
-                # 'cities': cities,
                 'footage_list': Footage.objects.all().filter(author=pk)})
 
         else:

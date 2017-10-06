@@ -9,6 +9,6 @@ class FootageAdmin(admin.ModelAdmin):
 
 @admin.register(FootageDetail)
 class FootageDetailAdmin(admin.ModelAdmin):
-    list_display = ['person', 'about_me', 'pricing', 'video_type', 'city']
+    list_display = ['person', 'about_me', 'pricing', 'video_type', 'city', 'phone']
     list_filter = ['pricing', 'city']
     search_fields = ['pricing', 'city']

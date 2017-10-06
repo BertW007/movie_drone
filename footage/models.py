@@ -53,6 +53,7 @@ class Footage(models.Model):
 class FootageDetail(models.Model):
     person = models.OneToOneField(User)
     about_me = models.TextField()
+    phone = models.CharField(max_length=32, null=True, blank=True)
     pricing = models.DecimalField(max_digits=6, decimal_places=2)
     video_type = models.CharField(choices=VIDEO_TYPES, max_length=100)
     city = models.CharField(choices=CITY, max_length=64)

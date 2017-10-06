@@ -33,9 +33,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'user-console' request.user.id %}">My Profile</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user-console' request.user.id %}">My Profile</a>
+                    </li>
                 {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'footage-view' %}">Videos</a>
@@ -64,26 +64,6 @@
             <h1>MOVIE DRONE</h1>
             <h3>Enjoy Wonderful Memories</h3>
             <hr class="intro-divider">
-            {#          <ul class="list-inline intro-social-buttons">#}
-            {#            <li class="list-inline-item">#}
-            {#              <a href="#" class="btn btn-secondary btn-lg">#}
-            {#                <i class="fa fa-twitter fa-fw"></i>#}
-            {#                <span class="network-name">Twitter</span>#}
-            {#              </a>#}
-            {#            </li>#}
-            {#            <li class="list-inline-item">#}
-            {#              <a href="#" class="btn btn-secondary btn-lg">#}
-            {#                <i class="fa fa-github fa-fw"></i>#}
-            {#                <span class="network-name">Github</span>#}
-            {#              </a>#}
-            {#            </li>#}
-            {#            <li class="list-inline-item">#}
-            {#              <a href="#" class="btn btn-secondary btn-lg">#}
-            {#                <i class="fa fa-linkedin fa-fw"></i>#}
-            {#                <span class="network-name">Linkedin</span>#}
-            {#              </a>#}
-            {#            </li>#}
-            {#          </ul>#}
         </div>
     </div>
 </header>
@@ -148,21 +128,7 @@
 <footer>
     <div class="container">
         <ul class="list-inline">
-            {#          <li class="list-inline-item">#}
-            {#            <a href="#">Home</a>#}
-            {#          </li>#}
-            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-            {#          <li class="list-inline-item">#}
-            {#            <a href="#about">About</a>#}
-            {#          </li>#}
-            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-            {#          <li class="list-inline-item">#}
-            {#            <a href="#services">Services</a>#}
-            {#          </li>#}
-            {#          <li class="footer-menu-divider list-inline-item">&sdot;</li>#}
-            {#          <li class="list-inline-item">#}
-            {#            <a href="#contact">Contact</a>#}
-            {#          </li>/#}
+
         </ul>
         <p class="copyright text-muted small">Copyright &copy; mstelwach 2017. All Rights Reserved</p>
     </div>

@@ -4,7 +4,7 @@
 {% block content %}
     <div class="details">
     <h1>{{ user.username }}'s console:</h1>
-
+    <h2><a href = "{%  url 'message-view' %}" class="btn btn-primary" >My Message</a></h2>
     {% if details %}
 
         <h3>about me:</h3>
@@ -14,17 +14,6 @@
 
     {% endif %}
 
-    {#    {% if cities %}#}
-    {#    <h3>My cities:</h3>#}
-    {#    <blockquote class="blockquote" ><ul class="list-inline">#}
-    {##}
-    {#        {% for city in cities %}#}
-    {#        <li class="list-inline-item">{{city.name}}</li>#}
-    {#        {% endfor %}#}
-    {##}
-    {#    </ul></blockquote>#}
-    {##}
-    {#    {% endif %}#}
     {% if footage_list %}
         <h3>My footage:</h3>
         <blockquote class="blockquote" >
